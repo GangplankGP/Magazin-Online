@@ -14,7 +14,8 @@
         static void Main(string[] args)
         {
             //Store store = Store.LoadData();
-            Magazin store = new Magazin();
+            Admin admin = new Admin();
+            Utilizator utilizator = new Utilizator();
 
             while (true)
             {
@@ -27,13 +28,13 @@
                 switch (choice)
                 {
                     case "1":
-                        UserMenu(store);
+                        UserMenu(utilizator);
                         break;
                     case "2":
                         Console.WriteLine("Introdu parola: ");
                         string input = Console.ReadLine();
                         if (checkpass(input))
-                            AdminMenu(store);
+                            AdminMenu(admin);
                         else
                             Console.WriteLine("Nu aveti permisiunea de Admin!");
                         break;
@@ -48,7 +49,7 @@
         }
 
 
-        static void UserMenu(Magazin store)
+        static void UserMenu(Utilizator utilizator)
         {
             while (true)
             {
@@ -64,25 +65,25 @@
                 switch (choice)
                 {
                     case "1":
-                        store.VizualizareProduse();
+                        utilizator.VizualizareProduse();
                         break;
                     case "2":
                         Console.Write("Introdu numele produsului: ");
                         string name = Console.ReadLine();
-                        store.CautareProduse(name);
+                        utilizator.CautareProduse(name);
                         break;
                     case "3":
                         Console.Write("1. Crescator, 2. Descrescator: ");
-                        bool ascending = Console.ReadLine() == "1";
-                        //store.SortProductsByPrice(ascending);
+                        int ord = Convert.ToInt32(Console.ReadLine());
+                        utilizator.SortareDupaPret(ord);
                         break;
                     case "4":
-                        Console.Write("Introdu ID produs: ");
-                        int id = int.Parse(Console.ReadLine());
-                        // store.AddToCart(id);
+                        Console.Write("Introdu nume produs: ");
+                        string nume = Console.ReadLine();
+                        //utilizator.AddToCart(nume);
                         break;
                     case "5":
-                        store.PlaceOrder();
+                        utilizator.PlaceOrder();
                         break;
                     case "6":
                         return;
@@ -93,7 +94,7 @@
             }
         }
 
-        static void AdminMenu(Magazin store)
+        static void AdminMenu(Admin admin)
         {
             while (true)
             {
@@ -109,25 +110,27 @@
                 switch (choice)
                 {
                     case "1":
-                        store.AdaugareProdus();
+                        admin.AdaugareProdus();
                         break;
                     case "2":
                         Console.Write("Introdu numele produsului: ");
                         string id = Console.ReadLine();
-                        store.ScoateProdus(id);
+                        admin.ScoateProdus(id);
                         break;
                     case "3":
                         Console.Write("Introdu nume produs: ");
                         string pid = Console.ReadLine();
                         Console.Write("Introdu cantitate noua: ");
                         int quantity = int.Parse(Console.ReadLine());
-                        store.SchimbareStoc(pid, quantity);
+                        admin.SchimbareStoc(pid, quantity);
                         break;
                     case "4":
-                        store.VizualizareComenzi();
+                        admin.VizualizareComenzi();
                         break;
                     case "5":
-
+                        Console.Write("Introdu ID-ul comenzii: ");
+                        int idc = Convert.ToInt32(Console.ReadLine());
+                        admin.ProcesareComanda(idc);
                         break;
                     case "6":
                         return;
