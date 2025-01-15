@@ -53,6 +53,8 @@
         {
             while (true)
             {
+                utilizator.SetProduse(admin.GetProduse());
+
                 Console.WriteLine("1. Vizualizare produse");
                 Console.WriteLine("2. Cauta produs");
                 Console.WriteLine("3. Sorteaza produse dupa pret");
@@ -65,7 +67,6 @@
                 switch (choice)
                 {
                     case "1":
-                        utilizator.SetProduse(admin.GetProduse());
                         utilizator.VizualizareProduse();
                         break;
                     case "2":
@@ -81,7 +82,7 @@
                     case "4":
                         Console.Write("Introdu nume produs: ");
                         string nume = Console.ReadLine();
-                        //utilizator.AddToCart(nume);
+                        utilizator.AdaugareCos(nume);
                         break;
                     case "5":
                         utilizator.PlaceOrder();

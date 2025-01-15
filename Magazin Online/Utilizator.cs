@@ -11,6 +11,7 @@ namespace Proiect
     internal class Utilizator
     {
         private List<Produs> produse = new List<Produs>();
+        private List<Produs> cos = new List<Produs>();
         private List<Comanda> comand = new List<Comanda>();
         public void SetProduse(List<Produs> produseAdmin)
         {
@@ -66,6 +67,19 @@ namespace Proiect
                         Console.WriteLine(p.nume);
                     }
                     break;
+            }
+        }
+        internal void AdaugareCos(string nume)
+        {
+            foreach(var p in produse)
+            {
+                if (nume == p.nume)
+                {
+                    cos.Add(p);
+                    Console.WriteLine("Produsul adaugat cu succes in cos");
+                }
+                else
+                    Console.WriteLine("Produsul nu a fost gasit.");
             }
         }
     }
