@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Newtonsoft.Json;
 
 namespace Proiect
 {
@@ -21,7 +22,7 @@ namespace Proiect
         {
             foreach (var p in produse)
             {
-                Console.WriteLine(p.nume+" " +p.stoc +" "+p.pret);
+                Console.WriteLine(p.nume + " " + p.stoc + " " + p.pret);
             }
         }
         internal void CautareProduse(string nume)
@@ -51,7 +52,7 @@ namespace Proiect
         }
         internal void SortareDupaPret(int ordonare)
         {
-            switch(ordonare)
+            switch (ordonare)
             {
                 case 1:
                     produse.Sort((s1, s2) => s1.pret.CompareTo(s2.pret));
@@ -71,7 +72,7 @@ namespace Proiect
         }
         internal void AdaugareCos(string nume)
         {
-            foreach(var p in produse)
+            foreach (var p in produse)
             {
                 if (nume == p.nume)
                 {
@@ -81,6 +82,25 @@ namespace Proiect
                 else
                     Console.WriteLine("Produsul nu a fost gasit.");
             }
+        }
+        public void SaveData()
+        {
+            foreach (var p in produse)
+            {
+                File.WriteAllText("./store.json", JsonConvert.SerializeObject(p));
+            }
+        }
+
+
+        public void LoadData()
+        {
+            if (File.Exists("./store.json"))
+            {
+
+                produse.Add(JsonConvert.DeserializeObject<Produs>(File.ReadAllText("./store.json")));
+            }
+            else
+                produse = new List<Produs>();
         }
     }
 }

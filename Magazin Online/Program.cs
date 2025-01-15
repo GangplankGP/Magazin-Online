@@ -13,9 +13,10 @@
 
         static void Main(string[] args)
         {
-            //Store store = Store.LoadData();
             Admin admin = new Admin();
             Utilizator utilizator = new Utilizator();
+            admin.LoadData();
+            utilizator.LoadData();
 
             while (true)
             {
@@ -39,7 +40,8 @@
                             Console.WriteLine("Nu aveti permisiunea de Admin!");
                         break;
                     case "3":
-                        //store.SaveData();
+                        utilizator.SaveData();
+                        admin.SaveData();
                         return;
                     default:
                         Console.WriteLine("Optiune invalida!");

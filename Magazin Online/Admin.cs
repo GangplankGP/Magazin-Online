@@ -1,4 +1,5 @@
-﻿using Proiect;
+﻿using Newtonsoft.Json;
+using Proiect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,6 +110,26 @@ namespace Proiect
                 string stare = com.DeliveryDate < DateTime.Now ? "livrat" : com.Status;
                 Console.WriteLine($"Lista Comenzi: Numarul comenzii: {com.OrderId}, Client: {com.CustomerName}, Status: {stare}, Data livrare: {com.DeliveryDate}");
             }
+        }
+        public void SaveData()
+        {
+            foreach (var p in produse)
+            {
+                File.WriteAllText("./store.json", JsonConvert.SerializeObject(p));
+            }
+        }
+
+
+        public void LoadData()
+        {
+            if (File.Exists("./store.json"))
+            {
+                //Produse= new List<Produs>();
+
+                produse.Add(JsonConvert.DeserializeObject<Produs>(File.ReadAllText("./store.json")));
+            }
+            else
+                produse = new List<Produs>();
         }
     }
 }
