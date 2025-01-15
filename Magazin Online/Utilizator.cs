@@ -12,6 +12,10 @@ namespace Proiect
     {
         private List<Produs> produse = new List<Produs>();
         private List<Comanda> comand = new List<Comanda>();
+        public void SetProduse(List<Produs> produseAdmin)
+        {
+            produse = produseAdmin;
+        }
         internal void VizualizareProduse()
         {
             foreach (var p in produse)

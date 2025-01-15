@@ -11,6 +11,11 @@ namespace Proiect
     {
         private List<Produs> produse = new List<Produs>();
         private List<Comanda> comand = new List<Comanda>();
+
+        public List<Produs> GetProduse()
+        {
+            return produse;
+        }
         internal void AdaugareProdus()
         {
             Console.Write("Nume produs: ");

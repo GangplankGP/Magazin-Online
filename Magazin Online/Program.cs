@@ -28,7 +28,7 @@
                 switch (choice)
                 {
                     case "1":
-                        UserMenu(utilizator);
+                        UserMenu(utilizator, admin);
                         break;
                     case "2":
                         Console.WriteLine("Introdu parola: ");
@@ -49,7 +49,7 @@
         }
 
 
-        static void UserMenu(Utilizator utilizator)
+        static void UserMenu(Utilizator utilizator, Admin admin)
         {
             while (true)
             {
@@ -65,6 +65,7 @@
                 switch (choice)
                 {
                     case "1":
+                        utilizator.SetProduse(admin.GetProduse());
                         utilizator.VizualizareProduse();
                         break;
                     case "2":
