@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Proiect
 {
-    internal abstract class Produs
+    internal class Produs
     {
         internal string nume { get; private set; }
         internal decimal pret {  get; private set; }
-        internal int stoc {  get; private set; }
+        internal int stoc {  get; set; }
 
         public Produs(string nume, decimal pret,int stoc)
         {

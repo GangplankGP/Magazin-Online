@@ -8,20 +8,46 @@ namespace Proiect
 {
     internal class Comanda
     {
-        internal string nume {  get; private set; }
-        internal string numardetelefon {  get; private set; }
-        internal string email {  get; private set; }
-        internal string adresa {  get; private set; }
-        internal List<Produs> produse {  get; private set; }=new List<Produs>();
-        internal string statut { get; private set; };
+        internal int OrderId;
+        internal List<Produs> Produse;
+        internal string CustomerName;
+        internal string PhoneNumber;
+        internal string Email;
+        internal string Address;
+        internal string Status;
+        internal DateTime DeliveryDate;
 
-        public Comanda(string nume, string numardetelefon, string email, string adresa, List<Produs> produse)
+        internal Comanda(int orderid, string nume, string nrtel, string mail, string adresa)
         {
-            this.nume = nume;
-            this.numardetelefon = numardetelefon;
-            this.email = email;
-            this.adresa = adresa;
-            this.produse = produse;
+            OrderId = orderid;
+            Produse = new List<Produs>();
+            CustomerName = nume;
+            PhoneNumber = nrtel;
+            Email = mail;
+            Address = adresa;
+            Status = "In asteptare";
+        }
+
+        internal void editare_admin(DateTime date)
+        {
+            Console.WriteLine("Alegeti noul status al comenzii: ");
+            Console.WriteLine("1. In asteptare ");
+            Console.WriteLine("2. In curs de livrare ");
+            string opt = Console.ReadLine();
+            switch (opt)
+            {
+                case "1":
+                    Status = "In asteptare";
+                    break;
+                case "2":
+                    Status = "In curs de livrare";
+                    break;
+                default:
+                    Console.WriteLine("Optiune invalida!");
+                    break;
+            }
+            DeliveryDate = date;
+            Console.WriteLine("Datele comenzii au fost actualizate!");
         }
     }
 }
