@@ -68,10 +68,10 @@ namespace Proiect
                 {
                     produse.Remove(p);
                     Console.WriteLine("Produsul a fost eliminat din stoc cu succes!");
+                    return;
                 }
-                else
-                    Console.WriteLine("Produsul nu a fost gasit.");
             }
+            Console.WriteLine("Produsul nu a fost gasit!");
         }
         internal void SchimbareStoc(string nume_produs, int cantitate)
         {
@@ -81,10 +81,11 @@ namespace Proiect
                 {
                     p.stoc = cantitate;
                     Console.WriteLine("Stoc actualizat cu succes!");
+                    return;
                 }
-                else
-                    Console.WriteLine("Produsul nu a fost gasit.");
+                    
             }
+            Console.WriteLine("Produsul nu a fost gasit.");
         }
         internal void ProcesareComanda(int id)
         {

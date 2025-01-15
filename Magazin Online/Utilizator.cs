@@ -21,7 +21,7 @@ namespace Proiect
         {
             foreach (var p in produse)
             {
-                Console.WriteLine(p.nume);
+                Console.WriteLine(p.nume+" " +p.stoc +" "+p.pret);
             }
         }
         internal void CautareProduse(string nume)
