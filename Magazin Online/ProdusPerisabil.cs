@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,10 @@ namespace Proiect
 {
     internal class ProdusPerisabil : Produs
     {
-        internal DateTime DataExpirare { get; private set; }
-        internal string ConditieDePastrare { get; private set; }
+        [JsonProperty("Dataexpirare")]
+        internal DateTime DataExpirare { get; set; }
+        [JsonProperty("Conditiedepastrare")]
+        internal string ConditieDePastrare { get; set; }
         public ProdusPerisabil(string nume, float pret,int stoc,DateTime dataExpirare,string conditieDePastrare) : base(nume, pret,stoc)
         {
             DataExpirare = dataExpirare;

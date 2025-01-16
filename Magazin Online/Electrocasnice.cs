@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,10 @@ namespace Proiect
 {
     internal class Electrocasnice : Produs
     {
-        internal string ClasadeEnergie { get; private set; }
-        internal int PutereMaxima { get; private set; }
+        [JsonProperty("Clasadeenergie")]
+        internal string ClasadeEnergie { get; set; }
+        [JsonProperty("Puteremaxima")]
+        internal int PutereMaxima { get; set; }
         public Electrocasnice(string nume, float pret,int stoc, string clasadeEnergie, int putereMaxima) : base(nume, pret,stoc)
         {
             ClasadeEnergie = clasadeEnergie;
