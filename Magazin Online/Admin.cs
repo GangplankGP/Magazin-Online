@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Proiect;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace Proiect
 {
     internal class Admin
     {
+        private string PathProduse = Directory.GetCurrentDirectory() + "\\ListaProduse.json";
+        private string PathComenzi = Directory.GetCurrentDirectory() + "\\ListaComenzi.json";
         private List<Produs> produse = new List<Produs>();
         private List<Comanda> comand = new List<Comanda>();
 
@@ -22,7 +25,7 @@ namespace Proiect
             Console.Write("Nume produs: ");
             string nume = Console.ReadLine();
             Console.Write("Pret: ");
-            decimal pret = decimal.Parse(Console.ReadLine());
+            float pret = float.Parse(Console.ReadLine());
             Console.Write("Stoc: ");
             int stoc = int.Parse(Console.ReadLine());
             Console.Write("Alegeti tipul produsului: ");
@@ -111,25 +114,66 @@ namespace Proiect
                 Console.WriteLine($"Lista Comenzi: Numarul comenzii: {com.OrderId}, Client: {com.CustomerName}, Status: {stare}, Data livrare: {com.DeliveryDate}");
             }
         }
-        public void SaveData()
+        public void SaveDataProd()
         {
-            foreach (var p in produse)
-            {
-                File.WriteAllText("./store.json", JsonConvert.SerializeObject(p));
-            }
+            string produseJSON = JsonConvert.SerializeObject(this.produse, Formatting.Indented);
+            File.WriteAllText("ListaProduse.json", produseJSON);
+        }
+        public void SaveDataCom()
+        {
+            string comenziJSON = JsonConvert.SerializeObject(this.comand, Formatting.Indented);
+            File.WriteAllText("ListaComenzi.json", comenziJSON);
         }
 
 
-        public void LoadData()
+        public void LoadDataProd()
         {
-            if (File.Exists("./store.json"))
+            if (File.Exists(PathProduse))
             {
-                //Produse= new List<Produs>();
-
-                produse.Add(JsonConvert.DeserializeObject<Produs>(File.ReadAllText("./store.json")));
+                string jsonstr = File.ReadAllText(PathProduse);
+                var result = JsonConvert.DeserializeObject<List<Produs>>(jsonstr);
+                if (result == null)
+                    this.produse = new List<Produs>();
+                else
+                {
+                    foreach (var prod in result)
+                    {
+                        this.produse.Add(prod);
+                    }
+                }
             }
             else
-                produse = new List<Produs>();
+            {
+                this.produse = new List<Produs>();
+            }
+        }
+        public void LoadDataCom()
+        {
+            if (File.Exists(PathComenzi))
+            {
+                try
+                {
+                    string jsonstr = File.ReadAllText(PathComenzi);
+                    var result = JsonConvert.DeserializeObject<List<Comanda>>(jsonstr);
+                    if (result == null)
+                        this.comand = new List<Comanda>();
+                    else
+                    {
+                        foreach (var prod in result)
+                        {
+                            this.comand.Add(prod);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else
+            {
+                this.comand = new List<Comanda>();
+            }
         }
     }
 }

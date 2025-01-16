@@ -22,7 +22,9 @@ namespace Proiect
         {
             foreach (var p in produse)
             {
-                Console.WriteLine(p.nume + " " + p.stoc + " " + p.pret);
+                Console.WriteLine($"Nume: {p.nume}");
+                Console.WriteLine($"Pret: {p.pret}");
+                Console.WriteLine($"Stoc: {p.stoc}");
             }
         }
         internal void CautareProduse(string nume)
@@ -82,25 +84,6 @@ namespace Proiect
                 else
                     Console.WriteLine("Produsul nu a fost gasit.");
             }
-        }
-        public void SaveData()
-        {
-            foreach (var p in produse)
-            {
-                File.WriteAllText("./store.json", JsonConvert.SerializeObject(p));
-            }
-        }
-
-
-        public void LoadData()
-        {
-            if (File.Exists("./store.json"))
-            {
-
-                produse.Add(JsonConvert.DeserializeObject<Produs>(File.ReadAllText("./store.json")));
-            }
-            else
-                produse = new List<Produs>();
         }
     }
 }

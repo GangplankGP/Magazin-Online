@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,21 @@ namespace Proiect
 {
     internal class Comanda
     {
+        [JsonProperty("OrderId")]
         internal int OrderId;
+        [JsonProperty("Produse")]
         internal List<Produs> Produse;
+        [JsonProperty("CustomerName")]
         internal string CustomerName;
+        [JsonProperty("Phoneumber")]
         internal string PhoneNumber;
+        [JsonProperty("Email")]
         internal string Email;
+        [JsonProperty("Adress")]
         internal string Address;
+        [JsonProperty("Status")]
         internal string Status;
+        [JsonProperty("DeliveryDate")]
         internal DateTime DeliveryDate;
 
         internal Comanda(int orderid, string nume, string nrtel, string mail, string adresa)

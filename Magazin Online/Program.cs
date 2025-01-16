@@ -15,8 +15,8 @@
         {
             Admin admin = new Admin();
             Utilizator utilizator = new Utilizator();
-            admin.LoadData();
-            utilizator.LoadData();
+            admin.LoadDataProd();
+            admin.LoadDataCom();
 
             while (true)
             {
@@ -40,8 +40,8 @@
                             Console.WriteLine("Nu aveti permisiunea de Admin!");
                         break;
                     case "3":
-                        utilizator.SaveData();
-                        admin.SaveData();
+                        admin.SaveDataProd();
+                        admin.SaveDataCom();
                         return;
                     default:
                         Console.WriteLine("Optiune invalida!");

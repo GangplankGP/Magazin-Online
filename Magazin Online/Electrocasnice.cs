@@ -10,7 +10,7 @@ namespace Proiect
     {
         internal string ClasadeEnergie { get; private set; }
         internal int PutereMaxima { get; private set; }
-        public Electrocasnice(string nume, decimal pret,int stoc, string clasadeEnergie, int putereMaxima) : base(nume, pret,stoc)
+        public Electrocasnice(string nume, float pret,int stoc, string clasadeEnergie, int putereMaxima) : base(nume, pret,stoc)
         {
             ClasadeEnergie = clasadeEnergie;
             PutereMaxima = putereMaxima;

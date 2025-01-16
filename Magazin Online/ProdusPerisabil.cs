@@ -10,7 +10,7 @@ namespace Proiect
     {
         internal DateTime DataExpirare { get; private set; }
         internal string ConditieDePastrare { get; private set; }
-        public ProdusPerisabil(string nume, decimal pret,int stoc,DateTime dataExpirare,string conditieDePastrare) : base(nume, pret,stoc)
+        public ProdusPerisabil(string nume, float pret,int stoc,DateTime dataExpirare,string conditieDePastrare) : base(nume, pret,stoc)
         {
             DataExpirare = dataExpirare;
             ConditieDePastrare = conditieDePastrare;
